@@ -22,20 +22,21 @@ class Pepper(object):
 
         app.start()
         session = app.session
-        # Get the service ALMemory.
+        # ALMemoryサービスを起動
         self.memory = session.service("ALMemory")
-        # Connect the event callback.
+        # コールバックを修正
 
         self.subscribers["HandLeftBackTouched"] = self.memory.subscriber("HandLeftBackTouched")
         self.subscribers['HandLeftBackTouched'].signal.connect(self.HandLeftBackTouched)
         self.subscribers["HandRightBackTouched"] = self.memory.subscriber("HandRightBackTouched")
         self.subscribers['HandRightBackTouched'].signal.connect(self.HandRightBackTouched)
 
-        # Get the services ALTextToSpeech and ALFaceDetection.
+        # 音声設定
         self.tts = ALProxy("ALTextToSpeech", self.pepper_ip, self.pepper_port)
         self.ttsStop = ALProxy('ALTextToSpeech', self.pepper_ip, self.pepper_port, True)
         # 音量設定
         self.audio = ALProxy("ALAudioDevice", self.pepper_ip, self.pepper_port)
+
         self.Speak("ロボアプリを起動します")
 
     def HandLeftBackTouched(self, value):
