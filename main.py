@@ -30,7 +30,6 @@ class Pepper(object):
 
         # 音声設定
         self.tts = ALProxy("ALTextToSpeech", self.pepper_ip, self.pepper_port)
-        self.ttsStop = ALProxy('ALTextToSpeech', self.pepper_ip, self.pepper_port, True)
         # 音量設定
         self.audio = ALProxy("ALAudioDevice", self.pepper_ip, self.pepper_port)
 
