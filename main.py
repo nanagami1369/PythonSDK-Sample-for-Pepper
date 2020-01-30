@@ -26,12 +26,8 @@ class Pepper(object):
         self.subscribers['FrontTactilTouched'].signal.connect(self.FrontTactilTouched)
         self.subscribers["HandLeftBackTouched"] = self.memory.subscriber("HandLeftBackTouched")
         self.subscribers['HandLeftBackTouched'].signal.connect(self.HandLeftBackTouched)
-        self.subscribers["HandLeftLeftTouched"] = self.memory.subscriber("HandLeftLeftTouched")
-        self.subscribers['HandLeftLeftTouched'].signal.connect(self.HandLeftLeftTouched)
-        self.subscribers["HandRightRightTouched"] = self.memory.subscriber("HandRightRightTouched")
-        self.subscribers['HandRightRightTouched'].signal.connect(self.HandRightRightTouched)
-        self.subscribers["HandRightRightTouched"] = self.memory.subscriber("HandRightRightTouched")
-        self.subscribers['HandRightRightTouched'].signal.connect(self.HandRightRightTouched)
+        self.subscribers["HandRightBackTouched"] = self.memory.subscriber("HandRightBackTouched")
+        self.subscribers['HandRightBackTouched'].signal.connect(self.HandRightBackTouched)
         self.subscribers["MiddleTactilTouched"] = self.memory.subscriber("MiddleTactilTouched")
         self.subscribers['MiddleTactilTouched'].signal.connect(self.MiddleTactilTouched)
         self.subscribers["RearTactilTouched"] = self.memory.subscriber("RearTactilTouched")
@@ -49,17 +45,11 @@ class Pepper(object):
     def HandLeftBackTouched(self, value):
         self.Speak("てのこう")
 
-    def HandLeftLeftTouched(self, value):
-        self.Speak("てのひら")
-
-    def HandLeftLeftTouched(self, value):
+    def HandRightBackTouched(self, value):
         self.Speak("てのこう")
 
-    def HandRightRightTouched(self, vale):
-        self.Speak("てのひら")
-
     def MiddleTactilTouched(self, value):
-        self.Speak("あたまのちゅうおう")
+        self.StopSpeak("頭の中央")
 
     def RearTactilTouched(self, value):
         self.Speak("ゆっくりでね")
