@@ -13,9 +13,13 @@ class Pepper(object):
 
     subscribers = {}
 
-    def __init__(self, app):
+    def __init__(self, app, pepper_ip, pepper_port):
+        from naoqi import ALProxy
         # 初期化
         super(Pepper, self).__init__()
+        self.pepper_ip = pepper_ip
+        self.pepper_port = pepper_port
+
         app.start()
         session = app.session
         # Get the service ALMemory.
@@ -87,6 +91,6 @@ if __name__ == "__main__":
         error_message.format(pepper_ip, pepper_port)
         sys.exit(1)
 
-What_is_do = Pepper(app)
+What_is_do = Pepper(app, pepper_ip, pepper_port)
 What_is_do
 What_is_do.run()
