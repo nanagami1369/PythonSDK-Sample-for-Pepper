@@ -68,6 +68,7 @@ class Pepper(object):
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
+            self.Speak("ロボアプリを停止します")
             print "停止"
             # stop
             sys.exit(0)
