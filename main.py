@@ -49,7 +49,7 @@ class Pepper(object):
         self.Speak("てのこう")
 
     def MiddleTactilTouched(self, value):
-        self.StopSpeak("頭の中央")
+        self.Speak("頭の中央")
 
     def RearTactilTouched(self, value):
         self.Speak("ゆっくりでね")
