@@ -26,37 +26,23 @@ class Pepper(object):
         self.memory = session.service("ALMemory")
         # Connect the event callback.
 
-        self.subscribers["FrontTactilTouched"] = self.memory.subscriber("FrontTactilTouched")
-        self.subscribers['FrontTactilTouched'].signal.connect(self.FrontTactilTouched)
         self.subscribers["HandLeftBackTouched"] = self.memory.subscriber("HandLeftBackTouched")
         self.subscribers['HandLeftBackTouched'].signal.connect(self.HandLeftBackTouched)
         self.subscribers["HandRightBackTouched"] = self.memory.subscriber("HandRightBackTouched")
         self.subscribers['HandRightBackTouched'].signal.connect(self.HandRightBackTouched)
-        self.subscribers["MiddleTactilTouched"] = self.memory.subscriber("MiddleTactilTouched")
-        self.subscribers['MiddleTactilTouched'].signal.connect(self.MiddleTactilTouched)
-        self.subscribers["RearTactilTouched"] = self.memory.subscriber("RearTactilTouched")
-        self.subscribers['RearTactilTouched'].signal.connect(self.RearTactilTouched)
 
         # Get the services ALTextToSpeech and ALFaceDetection.
-        self.tts = ALProxy("ALTextToSpeech", pepper_ip, pepper_port)
+        self.tts = ALProxy("ALTextToSpeech", self.pepper_ip, self.pepper_port)
+        self.ttsStop = ALProxy('ALTextToSpeech', self.pepper_ip, self.pepper_port, True)
         # 音量設定
-        self.audio = ALProxy("ALAudioDevice", pepper_ip, pepper_port)
+        self.audio = ALProxy("ALAudioDevice", self.pepper_ip, self.pepper_port)
         self.Speak("ロボアプリを起動します")
 
-    def FrontTactilTouched(self, value):
-        self.Speak("あたま")
-
     def HandLeftBackTouched(self, value):
-        self.Speak("てのこう")
+        self.Speak("パイポ・パイポ・パイポのシューリンガン、シューリンガンのグーリンダイ、グーリンダイのポンポコピーのポンポコナの、")
 
     def HandRightBackTouched(self, value):
-        self.Speak("てのこう")
-
-    def MiddleTactilTouched(self, value):
-        self.Speak("頭の中央")
-
-    def RearTactilTouched(self, value):
-        self.Speak("ゆっくりでね")
+        self.Quietly()
 
     def run(self):
         # 終了条件とループ処理
@@ -70,10 +56,18 @@ class Pepper(object):
             # stop
             sys.exit(0)
 
-    def Speak(self, script, speed=100, voice_sharping=100, volume=40):
+    def Speak(self, script, speed=100, voice_sharping=100, volume=20):
+
         self.audio.setOutputVolume(volume)
         sentence = "\\RSPD={}\\\\VCT={}\\{}\\RST\\"
-        self.tts.say(sentence.format(speed, voice_sharping, script))
+        speak_id = self.tts.post.say(sentence.format(speed, voice_sharping, script))
+        try:
+            self.tts.wait(speak_id, 0)
+        finally:
+            self.Quietly()
+
+    def Quietly(self):
+        self.tts.stopAll()
 
 
 if __name__ == "__main__":
