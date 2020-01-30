@@ -7,9 +7,6 @@ import qi
 
 
 class Pepper(object):
-    """
-    A simple class to react to face detection events.
-    """
 
     subscribers = {}
 
