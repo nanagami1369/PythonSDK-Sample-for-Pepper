@@ -41,6 +41,7 @@ class Pepper(object):
         self.tts = session.service("ALTextToSpeech")
         # 音量設定
         self.audio = session.service("ALAudioDevice")
+        self.Speak("ロボアプリを起動します")
 
     def FrontTactilTouched(self, value):
         self.Speak("あたま")
