@@ -38,9 +38,9 @@ class Pepper(object):
         self.subscribers['RearTactilTouched'].signal.connect(self.RearTactilTouched)
 
         # Get the services ALTextToSpeech and ALFaceDetection.
-        self.tts = session.service("ALTextToSpeech")
+        self.tts = ALProxy("ALTextToSpeech", pepper_ip, pepper_port)
         # 音量設定
-        self.audio = session.service("ALAudioDevice")
+        self.audio = ALProxy("ALAudioDevice", pepper_ip, pepper_port)
         self.Speak("ロボアプリを起動します")
 
     def FrontTactilTouched(self, value):
