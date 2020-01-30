@@ -39,6 +39,8 @@ class Pepper(object):
 
         # Get the services ALTextToSpeech and ALFaceDetection.
         self.tts = session.service("ALTextToSpeech")
+        # 音量設定
+        self.audio = session.service("ALAudioDevice")
 
     def FrontTactilTouched(self, value):
         self.Speak("あたま")
@@ -73,7 +75,8 @@ class Pepper(object):
             # stop
             sys.exit(0)
 
-    def Speak(self, script, speed=100, voice_sharping=100):
+    def Speak(self, script, speed=100, voice_sharping=100, volume=40):
+        self.audio.setOutputVolume(volume)
         sentence = "\\RSPD={}\\\\VCT={}\\{}\\RST\\"
         self.tts.say(sentence.format(speed, voice_sharping, script))
 
