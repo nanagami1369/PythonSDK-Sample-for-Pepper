@@ -32,10 +32,10 @@ class Pepper(object):
 
         self.Speak("ロボアプリを起動します")
 
-    def TouchChanged(self, event_name):
-        if event_name[0][1]:
-            self.Speak(event_name[0][0])
-            print event_name[0]
+    def TouchChanged(self, event):
+        if event[0][1]:
+            self.Speak(event[0][0])
+            print event[0]
 
     def run(self):
         # 終了条件とループ処理
