@@ -2,8 +2,6 @@
 import os
 import sys
 
-import enum
-
 import qi
 import where_is_do
 import Speak_Jugem
