@@ -79,5 +79,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
 What_is_do = Pepper(app, pepper_ip, pepper_port)
-What_is_do
 What_is_do.run()
