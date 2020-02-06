@@ -32,10 +32,13 @@ class Pepper(object):
 
         self.Speak("どこタッチを起動します")
 
-    def TouchChanged(self, event):
-        if event[0][1]:
-            self.Speak(event[0][0])
-            print event[0]
+    def TouchChanged(self, events):
+        event = events[0]
+        on_touched = event[1]
+        where_is_touched = event[0]
+        if on_touched:
+            self.Speak(where_is_touched)
+            print event
 
     def run(self):
         # 終了条件とループ処理

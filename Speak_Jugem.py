@@ -31,9 +31,10 @@ class Pepper(object):
 
         self.Speak("スピークじゅげむを起動します")
 
-    def Jugem(self, event):
-        on_touched = event[0][1]
-        where_is_touched = event[0][0]
+    def Jugem(self, events):
+        event = events[0]
+        on_touched = event[1]
+        where_is_touched = event[0]
         if on_touched and where_is_touched == "LArm":
             self.Speak(
                 "じゅげむじゅげむごこうのすりきれかいじゃりすいぎょのすいぎょうまつくうねるところにすむところやぶらこうじのやぶこうじぱいぽぱいぽぱいぽのしゅーりんがんしゅーりんがんのぐーりんだいぐーりんだいのぽんぽこぴーのぽんぽこなーのちょうくめいのちょうすけ")
