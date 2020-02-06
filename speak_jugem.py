@@ -47,7 +47,7 @@ class Pepper(object):
 
     def run(self):
         # 終了条件とループ処理
-        print "Starting Speak_Jugem"
+        print "Starting speak_jugem"
         try:
             while True:
                 time.sleep(1)

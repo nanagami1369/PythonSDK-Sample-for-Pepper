@@ -4,7 +4,7 @@ import sys
 
 import qi
 import where_is_do
-import Speak_Jugem
+import speak_jugem
 
 # 起動するアプリを選択
 (
@@ -29,7 +29,7 @@ if e_What_is_do == set_app:
     Pepper = where_is_do.Pepper(app, pepper_ip, pepper_port)
     Pepper.run()
 elif e_Speak_Jugem == set_app:
-    Pepper = Speak_Jugem.Pepper(app, pepper_ip, pepper_port)
+    Pepper = speak_jugem.Pepper(app, pepper_ip, pepper_port)
     Pepper.run()
 else:
     print "起動するアプリが選択されませんでした"
