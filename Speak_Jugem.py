@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 import time
 
@@ -27,7 +29,7 @@ class Pepper(object):
         # 音量設定
         self.audio = ALProxy("ALAudioDevice", self.pepper_ip, self.pepper_port)
 
-        self.Speak("ロボアプリを起動します")
+        self.Speak("スピークじゅげむを起動します")
 
     def Jugem(self, event):
         on_touched = event[0][1]
@@ -43,12 +45,12 @@ class Pepper(object):
 
     def run(self):
         # 終了条件とループ処理
-        print "Starting What_is_do"
+        print "Starting Speak_Jugem"
         try:
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
-            self.Speak("ロボアプリを停止します")
+            self.Speak("スピークじゅげむを停止します")
             print "停止"
             # stop
             sys.exit(0)

@@ -30,7 +30,7 @@ class Pepper(object):
         # 音量設定
         self.audio = ALProxy("ALAudioDevice", self.pepper_ip, self.pepper_port)
 
-        self.Speak("ロボアプリを起動します")
+        self.Speak("どこタッチ？を起動します")
 
     def TouchChanged(self, event):
         if event[0][1]:
@@ -44,7 +44,7 @@ class Pepper(object):
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
-            self.Speak("ロボアプリを停止します")
+            self.Speak("どこタッチ？を停止します")
             print "停止"
             # stop
             sys.exit(0)
