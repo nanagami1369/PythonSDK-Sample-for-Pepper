@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
+
+import enum
 
 import qi
 import where_is_do
 
-import os
+# 起動するアプリを選択
+(
+    e_What_is_do
+) = 0
+
+set_app = 0  # type: int
 
 pepper_ip = os.environ.get("PEPPER_IP")
 pepper_port_row = os.environ.get("PEPPER_PORT")
@@ -18,5 +26,8 @@ except RuntimeError:
     error_message.format(pepper_ip, pepper_port)
     sys.exit(1)
 
-Pepper = where_is_do.Pepper(app, pepper_ip, pepper_port)
-Pepper.run()
+if e_What_is_do == set_app:
+    Pepper = where_is_do.Pepper(app, pepper_ip, pepper_port)
+    Pepper.run()
+else:
+    print "起動するアプリが選択されませんでした"
