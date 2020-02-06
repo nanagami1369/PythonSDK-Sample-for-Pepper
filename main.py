@@ -6,12 +6,13 @@ import enum
 
 import qi
 import where_is_do
+import Speak_Jugem
 
 # 起動するアプリを選択
 (
-    e_What_is_do
-) = 0
-
+    e_What_is_do,
+    e_Speak_Jugem
+) = range(0, 2)
 set_app = 0  # type: int
 
 pepper_ip = os.environ.get("PEPPER_IP")
@@ -28,6 +29,9 @@ except RuntimeError:
 
 if e_What_is_do == set_app:
     Pepper = where_is_do.Pepper(app, pepper_ip, pepper_port)
+    Pepper.run()
+elif e_Speak_Jugem == set_app:
+    Pepper = Speak_Jugem.Pepper(app, pepper_ip, pepper_port)
     Pepper.run()
 else:
     print "起動するアプリが選択されませんでした"
