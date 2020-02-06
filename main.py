@@ -7,7 +7,6 @@ import qi
 
 
 class Pepper(object):
-
     subscribers = {}
 
     def __init__(self, app, pepper_ip, pepper_port):
@@ -23,10 +22,8 @@ class Pepper(object):
         self.memory = session.service("ALMemory")
         # コールバックを修正
 
-        self.subscribers["HandLeftBackTouched"] = self.memory.subscriber("HandLeftBackTouched")
-        self.subscribers['HandLeftBackTouched'].signal.connect(self.HandLeftBackTouched)
-        self.subscribers["HandRightBackTouched"] = self.memory.subscriber("HandRightBackTouched")
-        self.subscribers['HandRightBackTouched'].signal.connect(self.HandRightBackTouched)
+        self.subscribers["TouchChanged"] = self.memory.subscriber("TouchChanged")
+        self.subscribers['TouchChanged'].signal.connect(self.TouchChanged)
 
         # 音声設定
         self.tts = ALProxy("ALTextToSpeech", self.pepper_ip, self.pepper_port)
@@ -35,11 +32,10 @@ class Pepper(object):
 
         self.Speak("ロボアプリを起動します")
 
-    def HandLeftBackTouched(self, value):
-        self.Speak("パイポ・パイポ・パイポのシューリンガン、シューリンガンのグーリンダイ、グーリンダイのポンポコピーのポンポコナの、")
-
-    def HandRightBackTouched(self, value):
-        self.Quietly()
+    def TouchChanged(self, event_name):
+        if event_name[0][1]:
+            self.Speak(event_name[0][0])
+            print event_name[0]
 
     def run(self):
         # 終了条件とループ処理
