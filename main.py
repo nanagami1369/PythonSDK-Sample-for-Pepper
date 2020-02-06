@@ -49,7 +49,7 @@ class Pepper(object):
             # stop
             sys.exit(0)
 
-    def Speak(self, script, speed=100, voice_sharping=100, volume=20):
+    def Speak(self, script, speed=100, voice_sharping=100, volume=40):
 
         self.audio.setOutputVolume(volume)
         sentence = "\\RSPD={}\\\\VCT={}\\{}\\RST\\"
