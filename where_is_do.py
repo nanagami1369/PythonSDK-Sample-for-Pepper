@@ -42,7 +42,7 @@ class Pepper(object):
 
     def run(self):
         # 終了条件とループ処理
-        print "Starting What_is_do"
+        print "Starting where_is_do"
         try:
             while True:
                 time.sleep(1)
