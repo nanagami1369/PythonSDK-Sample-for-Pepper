@@ -42,6 +42,7 @@ class Pepper(object):
                   "ポンポコナーの長久命の長助"
         elif on_touched and where_is_touched == "RArm":
             self.Quietly()
+            print "音声を停止しました"
 
     def run(self):
         # 終了条件とループ処理
